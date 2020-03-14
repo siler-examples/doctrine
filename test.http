@@ -11,3 +11,13 @@ POST http://localhost:8000/todos
 {"text": "Hello, World!"}
 
 ###
+
+PUT http://localhost:8000/todos/1
+
+{"done": true}
+
+###
+
+DELETE http://localhost:8000/todos/1
+
+###

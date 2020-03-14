@@ -16,7 +16,7 @@ class Todo
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue()
      */
-    public int $id;
+    public ?int $id;
     /**
      * @ORM\Column(type="string")
      */
@@ -40,5 +40,12 @@ class Todo
         $todo = new self();
         $todo->text = $data['text'];
         return $todo;
+    }
+
+    public function mergeArray(array $data): self
+    {
+        $this->text = $data['text'] ?? $this->text;
+        $this->done = $data['done'] ?? $this->done;
+        return $this;
     }
 }

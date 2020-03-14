@@ -4,6 +4,7 @@ namespace App;
 
 use Doctrine\ORM\EntityManager;
 use Siler\{Http\Request, Http\Response, Route};
+use function Siler\array_get_int;
 use function Siler\Functional\puts;
 
 /** @var EntityManager $entity_manager */
@@ -20,4 +21,28 @@ Route\post('/todos', function () use ($entity_manager): void {
     $entity_manager->flush();
 
     Response\json($todo, 201);
+});
+
+Route\put('/todos/{id}', function (array $route_params) use ($entity_manager): void {
+    $id = array_get_int($route_params, 'id');
+    $data = Request\json();
+
+    /** @var Todo $todo */
+    $todo = $entity_manager->find(Todo::class, $id);
+    $todo->mergeArray($data);
+
+    $entity_manager->persist($todo);
+    $entity_manager->flush();
+
+    Response\json($todo);
+});
+
+Route\delete('/todos/{id}', function (array $route_params) use ($entity_manager): void {
+    $id = array_get_int($route_params, 'id');
+    $todo = $entity_manager->find(Todo::class, $id);
+
+    $entity_manager->remove($todo);
+    $entity_manager->flush();
+
+    Response\no_content();
 });
