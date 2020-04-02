@@ -913,12 +913,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/leocavalcante/siler.git",
-                "reference": "1ac5be1dd5bddfdc45d8e653b4ef0c5ae5e35396"
+                "reference": "354112a422e1db07250d32ce4f1fac39ff6d08c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leocavalcante/siler/zipball/1ac5be1dd5bddfdc45d8e653b4ef0c5ae5e35396",
-                "reference": "1ac5be1dd5bddfdc45d8e653b4ef0c5ae5e35396",
+                "url": "https://api.github.com/repos/leocavalcante/siler/zipball/354112a422e1db07250d32ce4f1fac39ff6d08c8",
+                "reference": "354112a422e1db07250d32ce4f1fac39ff6d08c8",
                 "shasum": ""
             },
             "require": {
@@ -1001,7 +1001,7 @@
                 "router",
                 "swoole"
             ],
-            "time": "2020-04-02T04:16:43+00:00"
+            "time": "2020-04-02T04:37:02+00:00"
         },
         {
             "name": "ocramius/package-versions",

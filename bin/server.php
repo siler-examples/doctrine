@@ -31,7 +31,7 @@ Route\put('/todos/{id}', function (array $route_params) use ($entity_manager): v
     $todo = $entity_manager->find(Todo::class, $id);
 
     if ($todo === null) {
-        Response\text('Not found', 404);
+        Response\not_found();
         return;
     }
 
@@ -46,6 +46,11 @@ Route\put('/todos/{id}', function (array $route_params) use ($entity_manager): v
 Route\delete('/todos/{id}', function (array $route_params) use ($entity_manager): void {
     $id = array_get_int($route_params, 'id');
     $todo = $entity_manager->find(Todo::class, $id);
+
+    if ($todo === null) {
+        Response\not_found();
+        return;
+    }
 
     $entity_manager->remove($todo);
     $entity_manager->flush();
