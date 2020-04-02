@@ -29,7 +29,13 @@ Route\put('/todos/{id}', function (array $route_params) use ($entity_manager): v
 
     /** @var Todo $todo */
     $todo = $entity_manager->find(Todo::class, $id);
-    $todo->mergeArray($data);
+
+    if ($todo === null) {
+        Response\text('Not found', 404);
+        return;
+    }
+
+    $todo->patch($data);
 
     $entity_manager->persist($todo);
     $entity_manager->flush();

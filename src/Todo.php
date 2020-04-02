@@ -4,6 +4,8 @@ namespace App;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Siler\Prelude\FromArray;
+use Siler\Prelude\Patch;
 
 /**
  * @ORM\Entity
@@ -11,6 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Todo
 {
+    use FromArray;
+    use Patch;
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -33,19 +38,5 @@ class Todo
     public function __construct()
     {
         $this->createdAt = new DateTime();
-    }
-
-    public static function fromArray(array $data): self
-    {
-        $todo = new self();
-        $todo->text = $data['text'];
-        return $todo;
-    }
-
-    public function mergeArray(array $data): self
-    {
-        $this->text = $data['text'] ?? $this->text;
-        $this->done = $data['done'] ?? $this->done;
-        return $this;
     }
 }
